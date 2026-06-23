@@ -902,3 +902,17 @@ async def version():
         "version": APP_VERSION,
         "server_time": now()
     }
+
+import asyncio
+import uvicorn
+
+from bot import dp, bot
+
+
+async def start_bot():
+    await dp.start_polling(bot)
+
+
+@app.on_event("startup")
+async def startup_event():
+    asyncio.create_task(start_bot())
