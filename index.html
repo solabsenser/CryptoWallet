@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>WalletX</title>
+
+<link rel="stylesheet" href="/style.css">
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- LOADER -->
+
+    <div id="loader">
+
+        <div class="spinner"></div>
+
+        <h2>WalletX</h2>
+
+    </div>
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard" class="page active">
+
+        <div class="topbar">
+
+            <h1 id="app-name">WalletX</h1>
+
+            <div id="user-avatar">
+                👤
+            </div>
+
+        </div>
+
+        <div class="portfolio-card">
+
+            <span class="label">
+                Portfolio Value
+            </span>
+
+            <h2 id="portfolio-value">
+                0.00 TON
+            </h2>
+
+            <span id="wallet-address">
+                No wallet
+            </span>
+
+        </div>
+
+        <div class="quick-actions">
+
+            <button id="create-wallet-btn">
+                Create Wallet
+            </button>
+
+            <button id="import-wallet-btn">
+                Import
+            </button>
+
+        </div>
+
+        <div class="asset-card">
+
+            <div class="asset-row">
+
+                <span>TON</span>
+
+                <span id="ton-balance">
+                    0.00
+                </span>
+
+            </div>
+
+            <div class="asset-row">
+
+                <span>USDT</span>
+
+                <span>
+                    0.00
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ASSETS -->
+
+    <section id="assets" class="page">
+
+        <h2>Assets</h2>
+
+        <div class="asset-card">
+
+            <div class="asset-row">
+
+                <span>TON</span>
+
+                <span id="assets-ton">
+                    0.00
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ACTIVITY -->
+
+    <section id="activity" class="page">
+
+        <h2>Activity</h2>
+
+        <div id="transactions">
+
+            <p class="empty">
+                No transactions
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- PROFILE -->
+
+    <section id="profile" class="page">
+
+        <div class="profile-card">
+
+            <h2>Profile</h2>
+
+            <p id="username">
+                Loading...
+            </p>
+
+            <p id="telegram-id">
+                -
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- CREATE WALLET MODAL -->
+
+    <div id="wallet-modal" class="modal">
+
+        <div class="modal-content">
+
+            <h2>Create Wallet</h2>
+
+            <p>
+                Save your recovery phrase.
+            </p>
+
+            <textarea
+                id="seed-phrase"
+                readonly
+            ></textarea>
+
+            <button id="confirm-wallet">
+
+                I Saved It
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- IMPORT WALLET MODAL -->
+
+    <div id="import-modal" class="modal">
+
+        <div class="modal-content">
+
+            <h2>Import Wallet</h2>
+
+            <textarea
+                id="import-seed"
+                placeholder="Enter recovery phrase"
+            ></textarea>
+
+            <button id="import-submit">
+
+                Import
+
+            </button>
+
+        </div>
+
+    </div>
+
+<!-- SEND MODAL -->
+
+<div id="send-modal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>Send Assets</h2>
+
+        <input
+            type="text"
+            id="receiver-wallet"
+            placeholder="Wallet Address"
+        >
+
+        <input
+            type="number"
+            id="send-amount"
+            placeholder="Amount"
+        >
+
+        <button id="send-btn">
+
+            Send
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- RECEIVE MODAL -->
+
+<div id="receive-modal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>Receive Assets</h2>
+
+        <div class="receive-address">
+
+            <span id="receive-wallet">
+
+                No Wallet
+
+            </span>
+
+        </div>
+
+        <button id="copy-wallet">
+
+            Copy Address
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- SETTINGS -->
+
+<section id="settings" class="page">
+
+    <h2>Settings</h2>
+
+    <div class="settings-card">
+
+        <div class="settings-item">
+
+            <span>Theme</span>
+
+            <span>Dark</span>
+
+        </div>
+
+        <div class="settings-item">
+
+            <span>Version</span>
+
+            <span>1.0.0</span>
+
+        </div>
+
+        <div class="settings-item">
+
+            <span>Security</span>
+
+            <span>Enabled</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- REFERRALS -->
+
+<section id="referrals" class="page">
+
+    <h2>Referral Program</h2>
+
+    <div class="ref-card">
+
+        <div id="ref-code">
+
+            No Code
+
+        </div>
+
+        <button id="generate-ref">
+
+            Generate Referral Code
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ADMIN PANEL -->
+
+<section id="admin" class="page">
+
+    <h2>Admin Panel</h2>
+
+    <div class="admin-grid">
+
+        <div class="admin-card">
+
+            <span>Total Users</span>
+
+            <h3 id="admin-users-count">
+
+                0
+
+            </h3>
+
+        </div>
+
+        <div class="admin-card">
+
+            <span>Transactions</span>
+
+            <h3 id="admin-tx-count">
+
+                0
+
+            </h3>
+
+        </div>
+
+    </div>
+
+    <div class="admin-actions">
+
+        <input
+            id="admin-target-id"
+            placeholder="Telegram ID"
+        >
+
+        <input
+            id="admin-amount"
+            placeholder="Amount"
+            type="number"
+        >
+
+        <button id="admin-credit">
+
+            Add Balance
+
+        </button>
+
+        <button id="admin-debit">
+
+            Remove Balance
+
+        </button>
+
+    </div>
+
+    <div id="admin-users-list">
+
+    </div>
+
+</section>
+
+<!-- FLOATING ACTION BUTTON -->
+
+<div id="fab">
+
+    +
+
+</div>
+
+<!-- ACTION MENU -->
+
+<div id="action-menu">
+
+    <button id="open-send">
+
+        Send
+
+    </button>
+
+    <button id="open-receive">
+
+        Receive
+
+    </button>
+
+</div>
+
+<!-- NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+        <button data-page="dashboard">
+
+            Home
+
+        </button>
+
+        <button data-page="assets">
+
+            Assets
+
+        </button>
+
+        <button data-page="activity">
+
+            Activity
+
+        </button>
+
+        <button data-page="profile">
+
+            Profile
+
+        </button>
+
+    </nav>
+
+</div>
+
+<script src="/app.js"></script>
+
+</body>
+</html>
