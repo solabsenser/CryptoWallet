@@ -1004,3 +1004,31 @@ body{
         translateY(0);
     }
 }
+
+#toast-container{
+
+    position:fixed;
+
+    top:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:99999;
+}
+
+.toast{
+
+    background:#1a2230;
+
+    color:white;
+
+    padding:14px 20px;
+
+    border-radius:14px;
+
+    margin-bottom:10px;
+
+    border:1px solid #2d3a50;
+}
