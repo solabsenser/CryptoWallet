@@ -9,6 +9,7 @@ import string
 import hashlib
 import secrets
 from datetime import datetime
+from fastapi.staticfiles import StaticFiles
 
 # ==========================================
 # CONFIG
@@ -38,6 +39,16 @@ app = FastAPI(
     version=APP_VERSION
 )
 
+from fastapi.responses import FileResponse
+
+@app.get("/style.css")
+async def style():
+    return FileResponse("style.css")
+
+@app.get("/app.js")
+async def js():
+    return FileResponse("app.js")
+    
 # ==========================================
 # WORDLIST
 # ==========================================
