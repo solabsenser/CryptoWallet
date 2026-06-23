@@ -1,0 +1,1006 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#07090d;
+    --card:#10141c;
+    --card2:#151b25;
+
+    --border:#242d3a;
+
+    --text:#ffffff;
+    --muted:#8e98a8;
+
+    --accent:#4da3ff;
+    --accent2:#2d7df6;
+
+    --success:#00d26a;
+    --danger:#ff5d5d;
+
+    --radius:22px;
+
+}
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+}
+
+#app{
+
+    width:100%;
+    max-width:600px;
+
+    margin:auto;
+
+    padding-bottom:120px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#07090d;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:9999;
+}
+
+.spinner{
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    border:5px solid #1b2330;
+
+    border-top:5px solid #4da3ff;
+
+    animation:spin 1s linear infinite;
+
+    margin-bottom:20px;
+}
+
+@keyframes spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:24px 20px;
+}
+
+.topbar h1{
+
+    font-size:28px;
+
+    font-weight:800;
+}
+
+#user-avatar{
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    background:var(--card);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid var(--border);
+}
+
+.portfolio-card{
+
+    margin:0 16px;
+
+    padding:24px;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #131b28,
+    #0c1018
+    );
+
+    border:1px solid var(--border);
+
+    box-shadow:
+    0 10px 40px
+    rgba(0,0,0,.35);
+}
+
+.label{
+
+    color:var(--muted);
+
+    font-size:14px;
+}
+
+#portfolio-value{
+
+    margin-top:12px;
+
+    font-size:40px;
+
+    font-weight:800;
+}
+
+#wallet-address{
+
+    display:block;
+
+    margin-top:14px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    word-break:break-all;
+}
+
+.quick-actions{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+
+    padding:16px;
+}
+
+.quick-actions button{
+
+    height:54px;
+
+    border:none;
+
+    border-radius:18px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+#create-wallet-btn{
+
+    background:var(--accent);
+
+    color:white;
+}
+
+#import-wallet-btn{
+
+    background:var(--card);
+
+    color:white;
+
+    border:1px solid var(--border);
+}
+
+.asset-card{
+
+    margin:0 16px;
+
+    margin-top:10px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:18px;
+}
+
+.asset-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 0;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
+}
+
+.asset-row:last-child{
+
+    border-bottom:none;
+}
+
+.asset-row span:first-child{
+
+    color:white;
+
+    font-weight:600;
+}
+
+.asset-row span:last-child{
+
+    color:#d7e2f1;
+}
+
+.profile-card,
+.settings-card,
+.ref-card{
+
+    margin:16px;
+
+    padding:22px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+}
+
+/* =========================
+   MODALS
+========================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.75);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:999;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-content{
+
+    width:100%;
+
+    max-width:450px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    padding:24px;
+
+    animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(20px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+    }
+}
+
+.modal-content h2{
+
+    margin-bottom:16px;
+
+    font-size:22px;
+}
+
+.modal-content p{
+
+    color:var(--muted);
+
+    margin-bottom:14px;
+}
+
+.modal-content textarea{
+
+    width:100%;
+
+    min-height:120px;
+
+    resize:none;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:18px;
+
+    padding:16px;
+
+    background:#0b1018;
+
+    color:white;
+
+    margin-top:10px;
+}
+
+.modal-content input{
+
+    width:100%;
+
+    height:54px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:18px;
+
+    background:#0b1018;
+
+    color:white;
+
+    padding:0 16px;
+
+    margin-top:12px;
+}
+
+.modal-content button{
+
+    width:100%;
+
+    height:54px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:var(--accent);
+
+    color:white;
+
+    font-weight:700;
+
+    margin-top:16px;
+
+    cursor:pointer;
+}
+
+/* =========================
+   TRANSACTIONS
+========================= */
+
+#transactions{
+
+    padding:16px;
+}
+
+.tx-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:16px;
+
+    margin-bottom:12px;
+}
+
+.tx-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.tx-amount{
+
+    font-weight:700;
+}
+
+.tx-positive{
+    color:var(--success);
+}
+
+.tx-negative{
+    color:var(--danger);
+}
+
+.tx-date{
+
+    margin-top:8px;
+
+    font-size:12px;
+
+    color:var(--muted);
+}
+
+/* =========================
+   ADMIN PANEL
+========================= */
+
+.admin-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+
+    padding:16px;
+}
+
+.admin-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:18px;
+}
+
+.admin-card span{
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+.admin-card h3{
+
+    margin-top:10px;
+
+    font-size:28px;
+}
+
+.admin-actions{
+
+    padding:16px;
+}
+
+.admin-actions input{
+
+    width:100%;
+
+    height:52px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:18px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    color:white;
+
+    padding:0 14px;
+
+    margin-bottom:10px;
+}
+
+.admin-actions button{
+
+    width:100%;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+    cursor:pointer;
+}
+
+#admin-credit{
+
+    background:var(--success);
+}
+
+#admin-debit{
+
+    background:var(--danger);
+}
+
+/* =========================
+   FLOAT BUTTON
+========================= */
+
+#fab{
+
+    position:fixed;
+
+    right:22px;
+
+    bottom:90px;
+
+    width:62px;
+
+    height:62px;
+
+    border-radius:50%;
+
+    background:var(--accent);
+
+    color:white;
+
+    font-size:34px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 10px 30px
+    rgba(77,163,255,.35);
+
+    z-index:200;
+}
+
+#action-menu{
+
+    position:fixed;
+
+    right:22px;
+
+    bottom:165px;
+
+    display:none;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    z-index:200;
+}
+
+#action-menu button{
+
+    border:none;
+
+    background:var(--card);
+
+    color:white;
+
+    border-radius:16px;
+
+    padding:12px 18px;
+
+    cursor:pointer;
+
+    border:1px solid var(--border);
+}
+
+/* =========================
+   RECEIVE
+========================= */
+
+.receive-address{
+
+    margin-top:16px;
+
+    background:#0b1018;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:16px;
+
+    word-break:break-all;
+
+    text-align:center;
+
+    color:#d9e5f4;
+}
+
+/* =========================
+   REFERRAL
+========================= */
+
+#ref-code{
+
+    margin-top:10px;
+
+    background:#0b1018;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:16px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+}
+
+#generate-ref{
+
+    width:100%;
+
+    height:54px;
+
+    margin-top:14px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:var(--accent);
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
+.settings-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        .05
+    );
+}
+
+.settings-item:last-child{
+
+    border-bottom:none;
+}
+
+.settings-item span:first-child{
+
+    color:white;
+}
+
+.settings-item span:last-child{
+
+    color:var(--muted);
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:74px;
+
+    background:
+    rgba(
+        8,
+        11,
+        17,
+        .92
+    );
+
+    backdrop-filter:
+    blur(25px);
+
+    border-top:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        .06
+    );
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    z-index:500;
+}
+
+.bottom-nav button{
+
+    border:none;
+
+    background:none;
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.bottom-nav button:hover{
+
+    color:white;
+}
+
+.bottom-nav button.active{
+
+    color:var(--accent);
+}
+
+/* =========================
+   BUTTON EFFECTS
+========================= */
+
+button{
+
+    transition:
+    transform .15s ease,
+    opacity .15s ease;
+}
+
+button:active{
+
+    transform:scale(.96);
+}
+
+button:hover{
+
+    opacity:.92;
+}
+
+/* =========================
+   GLASS EFFECT
+========================= */
+
+.portfolio-card,
+.asset-card,
+.profile-card,
+.settings-card,
+.ref-card,
+.admin-card{
+
+    backdrop-filter:
+    blur(20px);
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(20,26,38,.95),
+        rgba(12,16,24,.95)
+    );
+}
+
+/* =========================
+   EMPTY STATES
+========================= */
+
+.empty{
+
+    text-align:center;
+
+    color:var(--muted);
+
+    padding:30px 0;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+
+    width:6px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#273142;
+
+    border-radius:20px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:480px){
+
+    .topbar h1{
+
+        font-size:24px;
+    }
+
+    #portfolio-value{
+
+        font-size:34px;
+    }
+
+    .portfolio-card{
+
+        border-radius:24px;
+    }
+
+    .asset-card{
+
+        border-radius:20px;
+    }
+
+    .modal-content{
+
+        border-radius:22px;
+    }
+
+    #fab{
+
+        width:58px;
+        height:58px;
+
+        font-size:30px;
+    }
+}
+
+/* =========================
+   TELEGRAM SAFE AREA
+========================= */
+
+body{
+
+    padding-top:
+    env(
+        safe-area-inset-top
+    );
+
+    padding-bottom:
+    env(
+        safe-area-inset-bottom
+    );
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+.page{
+
+    animation:
+    fadePage .25s ease;
+}
+
+@keyframes fadePage{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(10px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+    }
+}
