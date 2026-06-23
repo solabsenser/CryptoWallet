@@ -6,7 +6,7 @@ import os
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-WEBAPP_URL = "https://YOUR-APP.onrender.com"
+WEBAPP_URL = "https://cryptowallet-w5n7.onrender.com"
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
